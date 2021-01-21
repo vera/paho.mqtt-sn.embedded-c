@@ -19,6 +19,7 @@
 #include "MQTTSNGateway.h"
 #include "MQTTSNPacket.h"
 #include <string>
+#include <unistd.h>
 
 using namespace std;
 using namespace MQTTSNGW;
@@ -37,6 +38,7 @@ MQTTGWPublishHandler::~MQTTGWPublishHandler()
 
 void MQTTGWPublishHandler::handlePublish(Client* client, MQTTGWPacket* packet)
 {
+	usleep(250000);
 	if ( !client->isActive() && !client->isSleep() && !client->isAwake())
 	{
 		WRITELOG("%s     The client is neither active nor sleep %s%s\n", ERRMSG_HEADER, client->getStatus(), ERRMSG_FOOTER);
